@@ -1,10 +1,10 @@
 # Homebrew formula for Klaus
 #
-# To use this formula, create a tap repo (homebrew-klaus) containing this file
-# at Formula/klaus.rb, then:
+# To use this formula, create a tap repo (homebrew-Klaus) containing this file
+# at Formula/Klaus.rb, then:
 #
-#   brew tap <your-github-user>/klaus
-#   brew install klaus
+#   brew tap <your-github-user>/Klaus
+#   brew install Klaus
 #
 # Before publishing, update the `url` to point to a tagged release tarball and
 # regenerate the sha256 with:
@@ -24,7 +24,9 @@ class Klaus < Formula
   depends_on "portaudio"
 
   def install
-    virtualenv_install_with_resources
+    virtualenv_create(libexec, "python@3.12")
+    system libexec/"bin/pip3", "install", "--no-cache-dir", buildpath
+    bin.install_symlink libexec/"bin/Klaus"
   end
 
   def caveats
@@ -35,11 +37,11 @@ class Klaus < Formula
       On first launch, a setup wizard will walk you through API key
       configuration, camera selection, and voice model download.
 
-      Run `klaus` to start.
+      Run `Klaus` to start.
     EOS
   end
 
   test do
-    assert_match "usage", shell_output("#{bin}/klaus --help 2>&1", 2)
+    assert_match "usage", shell_output("#{bin}/Klaus --help 2>&1", 2)
   end
 end
