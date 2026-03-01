@@ -14,8 +14,8 @@
 class Klaus < Formula
   desc "Voice-powered research assistant for physical books and papers"
   homepage "https://github.com/bgigurtsis/Klaus"
-  url "https://github.com/bgigurtsis/Klaus/archive/refs/tags/v0.1.0.tar.gz"
-  sha256 "23b5681ec359b38b9fc093207016f7ffa5b3def4786063f21239ed39f590b8a0"
+  url "https://github.com/bgigurtsis/Klaus/archive/refs/tags/v0.3.0.tar.gz"
+  sha256 "eed08abaf0c103e1606ea2300609853ddb4f367f099f3435db2548cb54a7f65a"
   license "MIT"
 
   depends_on "python@3.12"
