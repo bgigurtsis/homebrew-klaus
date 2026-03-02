@@ -14,29 +14,31 @@
 class Klaus < Formula
   desc "Voice-powered research assistant for physical books and papers"
   homepage "https://github.com/bgigurtsis/Klaus"
-  url "https://github.com/bgigurtsis/Klaus/archive/refs/tags/v0.3.2.tar.gz"
-  sha256 "1359fb9dd57acb26cb68f7fddeb5f5db93319fdbfb607b92d042d9fa968854d3"
+  url "https://github.com/bgigurtsis/Klaus/archive/refs/tags/v0.1.0.tar.gz"
+  sha256 "23b5681ec359b38b9fc093207016f7ffa5b3def4786063f21239ed39f590b8a0"
   license "MIT"
 
   depends_on "python@3.12"
   depends_on "portaudio"
+  depends_on "rust" => :build
 
   def install
     python3 = Formula["python@3.12"].opt_bin/"python3.12"
     system python3, "-m", "venv", libexec
-    system libexec/"bin/pip", "install", buildpath
+    system libexec/"bin/pip", "install", "--no-binary", "jiter", buildpath
     bin.install_symlink libexec/"bin/klaus"
   end
 
   def caveats
     <<~EOS
-      Klaus needs Accessibility permission for global hotkeys.
-      Grant it in: System Settings > Privacy & Security > Accessibility
+      Start Klaus with:
+        klaus
 
-      On first launch, a setup wizard will walk you through API key
-      configuration, camera selection, and voice model download.
+      On first launch a setup wizard will guide you through API keys,
+      camera selection, and voice model download.
 
-      Run `klaus` to start.
+      Global hotkeys require Accessibility permission:
+        System Settings > Privacy & Security > Accessibility
     EOS
   end
 
